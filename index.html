@@ -4,9 +4,15 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Feito por Mim</title>
+
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: Arial, sans-serif; color: #111; background: #fff; }
+
+    body {
+      font-family: Arial, sans-serif;
+      color: #111;
+      background: #fff;
+    }
 
     .topbar {
       background: #090b0f;
@@ -18,11 +24,11 @@
     }
 
     header {
-      height: 80px;
+      min-height: 80px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0 8%;
+      padding: 20px 8%;
       background: white;
     }
 
@@ -31,7 +37,9 @@
       font-family: cursive;
     }
 
-    .logo span { color: #a33; }
+    .logo span {
+      color: #a33;
+    }
 
     nav a {
       margin: 0 18px;
@@ -49,7 +57,9 @@
       gap: 40px;
     }
 
-    .hero-text { flex: 1; }
+    .hero-text {
+      flex: 1;
+    }
 
     .hero h1 {
       font-size: 52px;
@@ -94,6 +104,28 @@
       letter-spacing: 1px;
     }
 
+    .filters {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 40px;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      border: none;
+      background: #111;
+      color: white;
+      padding: 12px 22px;
+      cursor: pointer;
+      font-size: 14px;
+      letter-spacing: 1px;
+    }
+
+    .filter-btn:hover {
+      opacity: 0.8;
+    }
+
     .products {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -120,6 +152,16 @@
 
     .product p {
       font-size: 15px;
+    }
+
+    .btn-small {
+      display: inline-block;
+      margin-top: 12px;
+      padding: 10px 18px;
+      background: #111;
+      color: white;
+      text-decoration: none;
+      font-size: 13px;
     }
 
     .center {
@@ -156,26 +198,54 @@
     }
 
     @media (max-width: 900px) {
-      header { flex-direction: column; height: auto; padding: 20px; }
-      nav { margin-top: 15px; }
-      .hero { flex-direction: column; padding: 50px 6%; }
-      .hero h1 { font-size: 38px; }
-      .products { grid-template-columns: repeat(2, 1fr); }
-      .features { grid-template-columns: 1fr; }
+      header {
+        flex-direction: column;
+        height: auto;
+        padding: 20px;
+      }
+
+      nav {
+        margin-top: 15px;
+      }
+
+      .hero {
+        flex-direction: column;
+        padding: 50px 6%;
+      }
+
+      .hero h1 {
+        font-size: 38px;
+      }
+
+      .products {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .features {
+        grid-template-columns: 1fr;
+      }
     }
 
     @media (max-width: 550px) {
-      .products { grid-template-columns: 1fr; }
-      nav a { display: inline-block; margin: 8px; }
+      .products {
+        grid-template-columns: 1fr;
+      }
+
+      nav a {
+        display: inline-block;
+        margin: 8px;
+      }
     }
   </style>
 </head>
+
 <body>
 
   <div class="topbar">ENVIO GRÁTIS EM ENCOMENDAS ACIMA DE 50€</div>
 
   <header>
     <div class="logo">feito <span>por</span> mim</div>
+
     <nav>
       <a href="#">INÍCIO</a>
       <a href="#produtos">PRODUTOS</a>
@@ -199,46 +269,33 @@
   <section id="produtos">
     <h2 class="title">PRODUTOS EM DESTAQUE</h2>
 
-    <div class="products">
-      <div class="product">
-        <img src="imagens/mochila-verde.jpg" alt="Mochila Verde">
-        <h3>Mochila Verde</h3>
-        <p>45,00 €</p>
-      </div>
-
-      <div class="product">
-        <img src="imagens/saco-abstracto.jpg" alt="Saco Abstracto">
-        <h3>Saco Abstracto</h3>
-        <p>28,00 €</p>
-      </div>
-
-      <div class="product">
-        <img src="imagens/mochila-mostarda.jpg" alt="Mochila Mostarda">
-        <h3>Mochila Mostarda</h3>
-        <p>40,00 €</p>
-      </div>
-
-      <div class="product">
-        <img src="imagens/tshirt-montanha.jpg" alt="T-shirt Montanha">
-        <h3>T-shirt Montanha</h3>
-        <p>20,00 €</p>
-      </div>
+    <div class="filters">
+      <button class="filter-btn" onclick="filtrarProdutos('todos')">Todos</button>
+      <button class="filter-btn" onclick="filtrarProdutos('malas')">Malas</button>
+      <button class="filter-btn" onclick="filtrarProdutos('tshirts')">T-Shirts</button>
+      <button class="filter-btn" onclick="filtrarProdutos('lencos')">Lenços</button>
     </div>
 
+    <div id="lista-produtos" class="products"></div>
+
     <div class="center">
-      <a class="btn" href="https://wa.me/351960165270">ENCOMENDAR POR WHATSAPP</a>
+      <a class="btn" href="https://wa.me/351960165270" target="_blank">
+        ENCOMENDAR POR WHATSAPP
+      </a>
     </div>
   </section>
 
-  <div class="features">
+  <div class="features" id="sobre">
     <div>
       <h4>FEITO À MÃO</h4>
       <p>Cada peça é única</p>
     </div>
+
     <div>
       <h4>MATERIAIS DE QUALIDADE</h4>
       <p>Sustentáveis e duradouros</p>
     </div>
+
     <div>
       <h4>COM AMOR</h4>
       <p>Dedicação em cada detalhe</p>
@@ -248,6 +305,79 @@
   <footer id="contactos">
     Instagram: @fatima.f.mendes · Email: fatima.f.mendes@hotmail.com
   </footer>
+
+  <script>
+    const numeroWhatsapp = "351960165270";
+
+    const produtos = [
+      {
+        nome: "Mochila Verde",
+        preco: "45,00 €",
+        categoria: "malas",
+        imagem: "imagens/mochila-verde.jpg"
+      },
+      {
+        nome: "Saco Abstracto",
+        preco: "28,00 €",
+        categoria: "malas",
+        imagem: "imagens/saco-abstracto.jpg"
+      },
+      {
+        nome: "Mochila Mostarda",
+        preco: "40,00 €",
+        categoria: "malas",
+        imagem: "imagens/mochila-mostarda.jpg"
+      },
+      {
+        nome: "T-Shirt Montanha",
+        preco: "20,00 €",
+        categoria: "tshirts",
+        imagem: "imagens/tshirt-montanha.jpg"
+      },
+      {
+        nome: "Lenço Floral",
+        preco: "15,00 €",
+        categoria: "lencos",
+        imagem: "imagens/lenco-floral.jpg"
+      }
+    ];
+
+    const lista = document.getElementById("lista-produtos");
+
+    function mostrarProdutos(categoria = "todos") {
+      lista.innerHTML = "";
+
+      const produtosFiltrados =
+        categoria === "todos"
+          ? produtos
+          : produtos.filter(produto => produto.categoria === categoria);
+
+      produtosFiltrados.forEach(produto => {
+        const mensagem = `Olá, tenho interesse no produto: ${produto.nome}`;
+
+        lista.innerHTML += `
+          <div class="product">
+            <img src="${produto.imagem}" alt="${produto.nome}">
+            <h3>${produto.nome}</h3>
+            <p>${produto.preco}</p>
+            <a
+              class="btn-small"
+              href="https://wa.me/${numeroWhatsapp}?text=${encodeURIComponent(mensagem)}"
+              target="_blank"
+            >
+              Encomendar
+            </a>
+          </div>
+        `;
+      });
+    }
+
+    function filtrarProdutos(categoria) {
+      mostrarProdutos(categoria);
+    }
+
+    mostrarProdutos();
+  </script>
 
 </body>
 </html>
